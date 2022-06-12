@@ -1,5 +1,6 @@
 <?php
 
+error_reporting(E_ERROR | E_PARSE);
 include "pipe.php";
 
 function jabber($input) {
@@ -33,7 +34,9 @@ process_pipeline($pipe_log);
 //sql_insert("telegram_js", ["json" => $data]);
 $method = 'sendMessage';
 $reply = $data_in["message"]["reply_to_message"];
+$url = $data_in["message"]["entities"][0]["type"] === "url";
 $answer = $reply ? 'ладненько' : jabber($message);
+$answer = $url ? "интересная ссылка" : $answer;
 if ($answer):
     $send_data = ['text' => $answer];
 else:

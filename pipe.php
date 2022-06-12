@@ -1,6 +1,7 @@
 <?php
 
 declare(strict_types=1);
+error_reporting(0);
 
 include "sql.php";
 include "xml.php";
@@ -155,6 +156,14 @@ function process_input_radio($newnode, $node) {
     endforeach;
 }
 
+function process_authorize() {
+    session_start();
+    if ($_SESSION['authorized'] <> 1) {
+        header("Location: login.php");
+        exit;
+    }
+}
+
 function processPipe(DOMDocument|DOMElement $newnode, $node) {
     $node_type = $node->nodeType;
     $new_owner = $newnode->ownerDocument ?? $newnode;
@@ -162,6 +171,9 @@ function processPipe(DOMDocument|DOMElement $newnode, $node) {
         case 1:
             $nodename = $node->tagName;
             switch ($nodename):
+                case "authorize":
+                    process_authorize();
+                    break;
                 case "transform":
                     global $global_out;
                     processChilds($newnode, $node);

@@ -1,26 +1,19 @@
 <?php
-  session_start();
+
+include "pipe.php";
 
 $cases = ["камень", "ножницы", "бумага"];
 $rand = random_int(0, 2);
-$computer=$cases[$rand];
-$sxml = <<<XML
+$computer = $cases[$rand];
+$pipe = <<<XML
+  <transform id="main">
   <page title="Камень, ножницы, бумага - онлайн">
   <head/>
-  <body><header><cite>Главней всего погода в доме, а всё другое суефа!</cite></header>
+  <body>
   <article><h2>{$computer}</h2></article>
   </body>
   </page>
+  </transform>
   XML;
-$xml = new DOMDocument;
-$xml->loadXML($sxml);
 
-$xsl = new DOMDocument;
-$xsl->load('main.xsl');
-
-// Настройка преобразования
-$proc = new XSLTProcessor;
-$proc->importStyleSheet($xsl); // добавление стилей xsl
-
-echo $proc->transformToXML($xml);
-?>
+echo process_pipeline($pipe);

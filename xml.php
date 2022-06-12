@@ -19,7 +19,7 @@ function obj2xml($arr, $node) {
     $od = $node->ownerDocument;
     foreach ($arr as $name => $value):
         if (is_object($value) || is_array($value)):
-            $jn = $node->appendChild($od->createElement(is_int($name) ? "json_object" : $name));
+            $jn = $node->appendChild($od->createElement((is_int($name) ? "json_array_item" : '') . $name));
             obj2xml($value, $jn);
         else:
             $jn = $node->appendChild($od->createElement($name));

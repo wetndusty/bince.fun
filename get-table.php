@@ -12,7 +12,7 @@ $pipe = <<<XML
         <get-table name="v_users_js" root_name="table" row_name="row"/>
         <get-table name="json" root_name="table" row_name="row"/>
         <get-table name="tasks_nj" root_name="table" row_name="row"/>
-        <!--get-table name="telegram_js" root_name="table" row_name="row"/-->
+        <get-table name="telegram_js" root_name="table" row_name="row"/>
       </page>
   </transform>
 XML;

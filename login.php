@@ -16,7 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'):
         $_SESSION['user_id'] = $user_id;
         $_SESSION['user_name'] = $user_name;
         $referer = $post['referer'];
-        header("Location:todo.php");
+        header("Location:" . $referer);
         //echo session_id();
         //echo $user_id;
         exit;
@@ -28,17 +28,17 @@ $post_res = '';
 $referer = $_SERVER['HTTP_REFERER'] ?? "/";
 $pipe = <<<XML
 <transform id="main">
-  <page title="Вход">
-          <article>
-        <h1>Вход</h1>
+  <page title="Enter">
+   <article>
+        <h1>Enter</h1>
         <form method="post" action="login.php">
-            <input name="email" type="email" required="required" placeholder="Электронная почта"/>
-            <input name="pass" type="password" required="required" placeholder="Пароль"/>
+            <input name="email" type="email" required="required" placeholder="email"/>
+            <input name="pass" type="password" required="required" placeholder="password"/>
             <input name="referer" type="hidden" value="{$referer}"/>
-            <input type="submit" value="Войти"/>
+            <input type="submit" value="enter"/>
         </form>
-</article>
-</page>
+  </article>
+ </page>
 </transform>
 XML;
 //echo $pipe;

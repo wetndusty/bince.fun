@@ -8,7 +8,7 @@
  </xsl:copy>
 </xsl:template>
 <xsl:template match="title[not(normalize-space())]">
-<title>Без заголовка</title>
+<title>no title</title>
 </xsl:template>
 <xsl:template match="head">
 <xsl:copy>
