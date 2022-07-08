@@ -6,6 +6,7 @@ include "pipe.php";
 function jabber($input) {
     global $data_in;
     return match ($input) {
+        'Ты кто?' => 'Дед пыхто!',
         'суефа' => ["камень", "ножницы", "бумага"][random_int(0, 2)],
         'chat id' => $data_in['message']['chat']['id'],
         default => (sql_get_table_fx('telegram_learn_js', ["txt", "reply"], ["reply" => $input])[0]['txt'])
@@ -19,7 +20,7 @@ $data_in = json_decode($json, TRUE);
 
 $data = $data_in['callback_query'] ? $data_in['callback_query'] : $data_in['message'];
 
-define('TOKEN', '5495808630:AAEysFWsej1lTPAF7TEvjCfru0VwQVBrij0');
+define('TOKEN', '5537630755:AAFuhg4Dm_vC0AMi9o32VSQ8NXp2ExjVvQ4');
 
 //$message = mb_strtolower(($data['text'] ? $data['text'] : $data['data']), 'utf-8');
 $message = $data['text'] ? $data['text'] : $data['data'];
