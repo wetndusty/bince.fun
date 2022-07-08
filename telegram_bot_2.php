@@ -6,7 +6,7 @@ include "pipe.php";
 function jabber($input) {
     global $data_in;
     return match ($input) {
-        'Ты кто?' => 'Дед пыхто!',
+        'whoami' => 'I am bot',
         'суефа' => ["камень", "ножницы", "бумага"][random_int(0, 2)],
         'chat id' => $data_in['message']['chat']['id'],
         default => (sql_get_table_fx('telegram_learn_js', ["txt", "reply"], ["reply" => $input])[0]['txt'])
