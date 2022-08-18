@@ -2,8 +2,6 @@
 
 include "pipe.php";
 
-//$tname = $_GET["tname"] ?? "users";
-//school_requests
 $pipe = <<<XML
   <transform id="main">
       <page title="table">
